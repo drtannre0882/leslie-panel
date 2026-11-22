@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Explorations with Leslie Tanner: Audience Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f2a33;--surface:#17384300;--card:#173843;--ink:#e4efec;--muted:#8fb0ab;--accent:#f2b441;--accent-ink:#2a1d00;--line:#2b5361;--bad:#ff8a7e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f2a33;--card:#173843;--ink:#e4efec;--muted:#8fb0ab;--accent:#f2b441;--accent-ink:#2a1d00;--line:#2b5361;--bad:#ff8a7e}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef5f3;--card:#ffffff;--ink:#12303a;--muted:#4f6f6a;--accent:#b36b00;--accent-ink:#ffffff;--line:#c3d7d2;--bad:#b3261e}}
+:root[data-theme="dark"]{--bg:#0f2a33;--card:#173843;--ink:#e4efec;--muted:#8fb0ab;--accent:#f2b441;--accent-ink:#2a1d00;--line:#2b5361;--bad:#ff8a7e}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;min-height:100vh}
+main{max-width:480px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.6rem;line-height:1.15;margin:8px 0 4px}
+p{color:var(--muted);margin:0 0 16px;line-height:1.4}
+.demo{border:1px dashed var(--accent);color:var(--accent);border-radius:10px;padding:8px 12px;font-size:.85rem;margin-bottom:18px}
+input{width:100%;font:inherit;font-size:1.1rem;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+button{font:inherit;cursor:pointer;border:0}
+.go{width:100%;margin-top:10px;padding:14px;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:1.05rem}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.credits{font-size:1.1rem;font-weight:700;color:var(--accent)}
+.grid{display:grid;gap:12px}
+.redeem{position:relative;overflow:hidden;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:76px;display:flex;justify-content:space-between;align-items:center}
+.redeem b{font-size:1.3rem}
+.redeem small{color:var(--muted);font-size:.9rem}
+.redeem:active:not(:disabled){transform:scale(.98)}
+.redeem:disabled{opacity:.5;cursor:not-allowed}
+.fill{position:absolute;left:0;bottom:0;height:4px;background:var(--accent);width:0}
+.msg{display:none;margin-top:10px}
+.msg.on{display:block}
+#toast{min-height:1.4em;margin-top:16px;font-weight:700}
+.err{color:var(--bad)}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{flex:1;padding:12px;border-radius:12px;background:var(--card);color:var(--muted);border:1px solid var(--line);font-weight:700}
+.tab.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>Explorations with Leslie Tanner</h1>
+  <p>Live audience panel</p>
+
+  <section id="gate">
+    <p>Enter the show code from the screen.</p>
+    <input id="code" placeholder="Show code" autocomplete="off" autocapitalize="characters" aria-label="Show code">
+    <button class="go" id="enter">Join the show</button>
+    <div id="gateErr" class="err" role="alert"></div>
+  </section>
+
+  <section id="panel" class="hide">
+    <div class="bar"><span>Pick an action</span><span class="credits" id="credits"></span></div>
+    <div class="tabs" role="tablist"><button id="t-points" class="tab on" role="tab" aria-selected="true">Channel Points</button><button id="t-bits" class="tab" role="tab" aria-selected="false">Bits</button><button id="t-test" class="tab" role="tab" aria-selected="false">Test</button></div>
+    <div id="grid" class="grid"></div>
+    <div class="msg" id="msgBox">
+      <input id="msg" maxlength="80" placeholder="Type your question (80 characters max)" aria-label="Your question">
+    </div>
+    <div id="toast" role="status"></div>
+  </section>
+</main>
+<script>
+var $=function(i){return document.getElementById(i)};
+var tab="points",ACTIONS=[],credits=0,code="";
+var cid=(function(){try{var c=localStorage.getItem("cid");if(!c){c=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("cid",c)}return c}catch(e){return Math.random().toString(36).slice(2)+Date.now().toString(36)}})();
+function api(p,b){return fetch(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function showCredits(){$("credits").textContent=credits+(credits===1?" credit":" credits")}
+function toast(t,bad){var e=$("toast");e.textContent=t;e.className=bad?"err":""}
+function enter(){
+  var c=$("code").value.trim();
+  api("/api/join",{code:c,clientId:cid}).then(function(d){
+    if(!d.ok){$("gateErr").textContent="That code is not right. Check the screen and try again.";return}
+    code=c;credits=d.credits;ACTIONS=d.actions;
+    $("t-test").style.display=ACTIONS.some(function(a){return a.tab==="test"})?"":"none";
+    $("gate").classList.add("hide");$("panel").classList.remove("hide");build();showCredits();
+  }).catch(function(){$("gateErr").textContent="Can't reach the show. Check your connection."});
+}
+function build(){
+  var g=$("grid");g.innerHTML="";
+  ACTIONS.filter(function(r){return r.tab===tab}).forEach(function(r){
+    var b=document.createElement("button");b.className="redeem";
+    b.innerHTML="<span><b>"+r.name+"</b><br><small>"+(r.cost===0?"free":r.cost+" credit"+(r.cost>1?"s":""))+(r.text?" · add a message":"")+"</small></span><span class='fill'></span>";
+    b.onclick=function(){press(r,b)};g.appendChild(b);
+  });
+  $("msgBox").classList.toggle("on",ACTIONS.some(function(r){return r.text&&r.tab===tab}));
+}
+function lock(b,secs){
+  var f=b.querySelector(".fill");b.disabled=true;f.style.transition="none";f.style.width="100%";
+  void f.offsetWidth;f.style.transition="width "+secs+"s linear";f.style.width="0";
+  setTimeout(function(){b.disabled=false},secs*1000);
+}
+function press(r,b){
+  var text="";
+  if(r.text){text=$("msg").value.trim();if(!text){toast("Type your message first.",true);return}}
+  b.disabled=true;
+  api("/api/press",{code:code,clientId:cid,action:r.name,text:text}).then(function(d){
+    if(d.credits!==undefined){credits=d.credits;showCredits()}
+    if(!d.ok){b.disabled=false;toast(d.error,true);return}
+    lock(b,d.cooldown);toast(r.name+" sent.");if(r.text)$("msg").value="";
+  }).catch(function(){b.disabled=false;toast("Not sent. Check your connection.",true)});
+}
+["points","bits","test"].forEach(function(t){$("t-"+t).onclick=function(){tab=t;["points","bits","test"].forEach(function(x){var on=x===t;$("t-"+x).classList.toggle("on",on);$("t-"+x).setAttribute("aria-selected",on)});build();toast("")}});
+$("enter").onclick=enter;
+$("code").addEventListener("keydown",function(e){if(e.key==="Enter")enter()});
+</script>
+</body>
+</html>
