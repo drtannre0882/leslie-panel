@@ -1,0 +1,218 @@
+[
+ {
+  "name": "Relax",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Question",
+  "cost": 1,
+  "tab": "points",
+  "text": true
+ },
+ {
+  "name": "Express",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Explore",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Covet",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Fitness",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Innovate",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Communicate",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Travesty",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Debasement",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Violence",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Decay",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Lack",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Sustain",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Sensuality",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Loser",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Lather",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Connect",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Manifest",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Defeat",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Lactate",
+  "cost": 1,
+  "tab": "points",
+  "text": false
+ },
+ {
+  "name": "Quote from Leslie",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Blossom",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Affirmation for Men",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Affirmation for Women",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Affirmation for Theys",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Leslie's Heed",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Communal Vision",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Testimonial",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Guided Meditation",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Confess Sexual Deviance",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "PENAS",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Nothing",
+  "cost": 3,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Terminate Call by Poll",
+  "cost": 5,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Terminate Call",
+  "cost": 5,
+  "tab": "bits",
+  "text": false
+ },
+ {
+  "name": "Websocket Test",
+  "cost": 0,
+  "tab": "test",
+  "text": false
+ }
+]
