@@ -15,6 +15,7 @@ function getClient(id) {
   if (!clients.has(id)) clients.set(id, { credits: START, last: {}, lastAny: 0 });
   return clients.get(id);
 }
+const clean = (v, n) => String(v || "").replace(/[\u0000-\u001f]/g, " ").trim().slice(0, n);
 const codeOk = c => String(c || "").trim().toUpperCase() === SHOW_CODE;
 
 app.post("/api/join", (req, res) => {
@@ -34,13 +35,12 @@ app.post("/api/press", (req, res) => {
   if (c.last[a.name] && now - c.last[a.name] < COOLDOWN * 1000) return res.json({ ok: false, error: a.name + " is cooling down.", credits: c.credits });
   if (c.credits < a.cost) return res.json({ ok: false, error: "You are out of credits.", credits: c.credits });
   if (queue.length >= MAX_QUEUE) return res.json({ ok: false, error: "The stream is busy. Try again in a moment.", credits: c.credits });
-  let text = "";
-  if (a.text) {
-    text = String(req.body.text || "").replace(/[\u0000-\u001f]/g, " ").trim().slice(0, 80);
-    if (!text) return res.json({ ok: false, error: "Type your message first.", credits: c.credits });
-  }
+  const f = a.fields || [];
+  const username = clean(req.body.username, 25), message = clean(req.body.message, 200);
+  if ((f.includes("username") && !username) || (f.includes("message") && !message))
+    return res.json({ ok: false, error: "Please fill in everything.", credits: c.credits });
   c.credits -= a.cost; c.lastAny = now; c.last[a.name] = now;
-  queue.push({ action: a.name, text, at: now });
+  queue.push({ action: a.name, username: f.includes("username") ? username : "", message: f.includes("message") ? message : "", at: now });
   res.json({ ok: true, credits: c.credits, cooldown: COOLDOWN });
 });
 
