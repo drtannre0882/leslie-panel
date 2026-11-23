@@ -106,37 +106,37 @@
  },
  {
   "name": "Quote from Leslie",
-  "cost": 3,
+  "cost": 25,
   "tab": "bits"
  },
  {
   "name": "Blossom",
-  "cost": 3,
+  "cost": 50,
   "tab": "bits"
  },
  {
   "name": "Affirmation for Men",
-  "cost": 3,
+  "cost": 100,
   "tab": "bits"
  },
  {
   "name": "Affirmation for Women",
-  "cost": 3,
+  "cost": 101,
   "tab": "bits"
  },
  {
   "name": "Affirmation for Theys",
-  "cost": 3,
+  "cost": 102,
   "tab": "bits"
  },
  {
   "name": "Leslie's Heed",
-  "cost": 3,
+  "cost": 150,
   "tab": "bits"
  },
  {
   "name": "Communal Vision",
-  "cost": 3,
+  "cost": 200,
   "tab": "bits",
   "fields": [
    "username",
@@ -145,7 +145,7 @@
  },
  {
   "name": "Testimonial",
-  "cost": 3,
+  "cost": 250,
   "tab": "bits",
   "fields": [
    "username",
@@ -154,7 +154,7 @@
  },
  {
   "name": "Guided Meditation",
-  "cost": 3,
+  "cost": 300,
   "tab": "bits",
   "fields": [
    "username",
@@ -163,7 +163,7 @@
  },
  {
   "name": "Confess Sexual Deviance",
-  "cost": 3,
+  "cost": 350,
   "tab": "bits",
   "fields": [
    "username",
@@ -172,7 +172,7 @@
  },
  {
   "name": "PENAS",
-  "cost": 3,
+  "cost": 400,
   "tab": "bits",
   "fields": [
    "username",
@@ -181,17 +181,17 @@
  },
  {
   "name": "Nothing",
-  "cost": 3,
+  "cost": 500,
   "tab": "bits"
  },
  {
   "name": "Terminate Call by Poll",
-  "cost": 5,
+  "cost": 600,
   "tab": "bits"
  },
  {
   "name": "Terminate Call",
-  "cost": 5,
+  "cost": 1000,
   "tab": "bits",
   "fields": [
    "username",
