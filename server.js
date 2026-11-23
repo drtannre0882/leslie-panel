@@ -3,7 +3,7 @@ const app = express();
 app.use(express.json({ limit: "2kb" }));
 const SHOW_CODE = (process.env.SHOW_CODE || "EXPLORE").trim().toUpperCase();
 const HELPER_KEY = process.env.HELPER_KEY || "";
-const START = Number(process.env.START_CREDITS) || 10;
+const START = Number(process.env.START_CREDITS) || 1000;
 const COOLDOWN = 10, PHONE_GAP = 3000, MAX_QUEUE = 40;
 let ACTIONS = JSON.parse(fs.readFileSync(path.join(__dirname, "actions.json"), "utf8"));
 if (process.env.HIDE_TEST) ACTIONS = ACTIONS.filter(a => a.tab !== "test");
@@ -33,7 +33,7 @@ app.post("/api/press", (req, res) => {
   const now = Date.now();
   if (now - c.lastAny < PHONE_GAP) return res.json({ ok: false, error: "Hold on a moment.", credits: c.credits });
   if (c.last[a.name] && now - c.last[a.name] < COOLDOWN * 1000) return res.json({ ok: false, error: a.name + " is cooling down.", credits: c.credits });
-  if (c.credits < a.cost) return res.json({ ok: false, error: "You are out of credits.", credits: c.credits });
+  if (c.credits < a.cost) return res.json({ ok: false, error: "You don't have enough points.", credits: c.credits });
   if (queue.length >= MAX_QUEUE) return res.json({ ok: false, error: "The stream is busy. Try again in a moment.", credits: c.credits });
   const f = a.fields || [];
   const username = clean(req.body.username, 25), message = clean(req.body.message, 200);
