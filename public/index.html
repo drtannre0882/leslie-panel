@@ -8,7 +8,7 @@
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;min-height:100vh;color:#000;font-family:"Times New Roman",Times,serif;background-color:#428b86;background-image:url("background.jpg");background-repeat:repeat;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
-main{max-width:480px;margin:0 auto;padding:16px 14px 36px;text-align:center}
+main{max-width:480px;margin:0 auto;padding:16px 12px 36px;text-align:center}
 h1{font-size:2rem;line-height:1.1;margin:10px 0 4px;font-weight:700}
 .sub{font-style:italic;font-weight:700;font-size:1.15rem;margin:0 0 10px}
 p{margin:0 0 12px;font-size:1.05rem}
@@ -31,6 +31,10 @@ input{width:100%;font-family:"Times New Roman",Times,serif;font-size:1.1rem;padd
 .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700}
 .credits{background:#fff;border:2px solid;border-color:#707070 #fff #fff #707070;padding:4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:.9rem}
 .grid{display:grid;gap:10px}
+.cols4{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.cols4 .redeem{min-height:58px;padding:6px 2px;justify-content:center;text-align:center}
+.cols4 .redeem b{font-size:.64rem;text-transform:none;letter-spacing:0;line-height:1.15;overflow-wrap:anywhere}
+.cols4 .redeem small{display:none}
 hr{border:0;border-top:2px solid #000;margin:22px 0 14px}
 #toast{min-height:1.4em;margin-top:14px;font-weight:700}
 .err{color:#6e0000;font-weight:700}
@@ -73,7 +77,7 @@ var $=function(i){return document.getElementById(i)};
 var tab="points",ACTIONS=[],credits=0,code="";
 var cid=(function(){try{var c=localStorage.getItem("cid");if(!c){c=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("cid",c)}return c}catch(e){return Math.random().toString(36).slice(2)+Date.now().toString(36)}})();
 function api(p,b){return fetch(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}).then(function(r){return r.json()})}
-function showCredits(){$("credits").textContent=credits+(credits===1?" credit":" credits")}
+function showCredits(){$("credits").textContent=credits+(credits===1?" point":" points")}
 function toast(t,bad){var e=$("toast");e.textContent=t;e.className=bad?"err":""}
 function enter(){
   var c=$("code").value.trim();
@@ -85,10 +89,10 @@ function enter(){
   }).catch(function(){$("gateErr").textContent="Can't reach the show. Check your connection."});
 }
 function build(){
-  var g=$("grid");g.innerHTML="";
+  var g=$("grid");g.innerHTML="";g.className="grid"+(tab==="points"?" cols4":"");
   ACTIONS.filter(function(r){return r.tab===tab}).forEach(function(r){
     var b=document.createElement("button");b.className="redeem";
-    b.innerHTML="<span><b>"+r.name+"</b><br><small>"+(r.cost===0?"free":r.cost+" credit"+(r.cost>1?"s":""))+(r.fields?" · needs your input":"")+"</small></span><span class='fill'></span>";
+    b.innerHTML="<span><b>"+r.name+"</b><br><small>"+(r.cost===0?"free":r.cost+" point"+(r.cost>1?"s":""))+(r.fields?" · needs your input":"")+"</small></span><span class='fill'></span>";
     b.onclick=function(){press(r,b)};g.appendChild(b);
   });
 }
