@@ -2,217 +2,208 @@
  {
   "name": "Relax",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Question",
   "cost": 1,
   "tab": "points",
-  "text": true
+  "fields": [
+   "message"
+  ]
  },
  {
   "name": "Express",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Explore",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Covet",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Fitness",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Innovate",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Communicate",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Travesty",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Debasement",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Violence",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Decay",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Lack",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Sustain",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Sensuality",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Loser",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Lather",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Connect",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Manifest",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Defeat",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Lactate",
   "cost": 1,
-  "tab": "points",
-  "text": false
+  "tab": "points"
  },
  {
   "name": "Quote from Leslie",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Blossom",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Affirmation for Men",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Affirmation for Women",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Affirmation for Theys",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Leslie's Heed",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Communal Vision",
   "cost": 3,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "Testimonial",
   "cost": 3,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "Guided Meditation",
   "cost": 3,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "Confess Sexual Deviance",
   "cost": 3,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "PENAS",
   "cost": 3,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "Nothing",
   "cost": 3,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Terminate Call by Poll",
   "cost": 5,
-  "tab": "bits",
-  "text": false
+  "tab": "bits"
  },
  {
   "name": "Terminate Call",
   "cost": 5,
   "tab": "bits",
-  "text": false
+  "fields": [
+   "username",
+   "message"
+  ]
  },
  {
   "name": "Websocket Test",
   "cost": 0,
-  "tab": "test",
-  "text": false
+  "tab": "test"
  }
 ]
